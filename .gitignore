@@ -1,0 +1,112 @@
+# ==========================
+# SimEIT_internal .gitignore
+# ==========================
+# Scope: MATLAB-centric project with shell scripts, Python helpers, and generated data/plots.
+# Notes:
+# - This aims to ignore build artifacts, autosaves, logs, and large/generated data.
+# - Feel free to uncomment/add patterns below to fit your workflow.
+
+# --- OS / File managers ---
+.DS_Store
+Thumbs.db
+
+# --- Editors / IDEs ---
+.vscode/
+.idea/
+*.code-workspace
+*.swp
+*.swo
+
+# --- Python caches / envs (for helper scripts) ---
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.env
+.envrc
+
+# --- MATLAB / Simulink ---
+# Autosaves and backups
+*.asv
+*~
+*.autosave
+*.backup
+*.bak
+
+# Compiled MEX artifacts (platform-specific extensions)
+*.mex*
+
+# Simulink and related temp files (harmless if unused)
+*.slxc
+*.slx.autosave
+*.mdl.autosave
+
+# P-coded files (generated, not source)
+*.p
+
+# --- Compiled / Objects / Binaries ---
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.a
+*.lib
+*.exe
+
+# --- Logs and scheduler outputs ---
+*.log
+*.out
+*.err
+nohup.out
+slurm-*.out
+# Typical SGE/cluster output naming (seen in RUN_scripts and CombineAndDownScale)
+*.o[0-9]*
+*.e[0-9]*
+
+# --- Generated data files (large, typically not versioned) ---
+# If you need small MAT/CSV tracked, comment these out locally or add exceptions.
+*.mat
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.parquet
+
+# --- Visualization / Mesh / VTK outputs ---
+*.vtk
+*.vti
+*.vtu
+*.vtp
+
+# --- Archives ---
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+
+# --- EIDORS specific ---
+# eidors/
+
+# --- Common temp / cache folders ---
+logs/
+log/
+cache/
+.tmp/
+tmp/
+temp/
+
+# --- Project-specific noisy folders/files ---
+# Logs produced by scaling/combination scripts
+combine_and_down_scale/different_scale_log/
+# Cluster run logs produced by scripts
+run_scripts/
+run_scripts/*.o*
+run_scripts/*.e*
+run_scripts/*.log
+run_scripts/*.out
+
+# --- Node/npm leftovers (unlikely, but harmless) ---
+node_modules/

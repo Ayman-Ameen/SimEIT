@@ -1,0 +1,139 @@
+# SimEIT Configuration File
+# This file contains all configurable parameters for the EIT dataset generation
+
+# ============================================================================
+# General Settings
+# ============================================================================
+general:
+  mode: 'simulation'  # Options: 'simulation', 'simulation_test', 'experimental'
+  description: 'Generate large-scale EIT simulation dataset'
+
+# ============================================================================
+# Model Configuration
+# ============================================================================
+model:
+  electrodes_num: 16        # Number of electrodes (e.g., 16, 32, 64, 128)
+  resolution: 256           # Image resolution in pixels (e.g., 128, 256, 512, 1024)
+  dimension: '2d'           # Dimension of the model ('2d' or '3d')
+  z_contact: 0.01           # Contact impedance for electrodes
+  shape_function: 'unit_circle'  # Domain shape function
+  coverage_ratio: 1.0       # Coverage ratio for electrode placement
+  number_virtual_electrodes: 16  # Number of virtual electrodes
+  reinforcement_electrodes: 0    # Electrode reinforcement setting
+
+# ============================================================================
+# Dataset Generation Settings
+# ============================================================================
+dataset:
+  number_of_samples: 5000   # Total number of samples to generate
+  local_patch_size: 100     # Number of samples per batch/patch
+  patch_number: null        # Starting patch number (null = auto-detect)
+  
+  # Object configuration
+  max_number_of_objects: 4  # Maximum number of inclusions per sample
+  min_number_of_objects: 1  # Minimum number of inclusions per sample
+  number_of_features: 7     # Number of features per object
+  
+  # Available object types
+  object_types:
+    - 'circle'
+    - 'ellipse'
+    - 'rectangle'
+    - 'triangle'
+
+# ============================================================================
+# Conductivity Settings
+# ============================================================================
+conductivity:
+  # Background conductivity
+  background_conductivity: 1.0
+  
+  # Logarithmic distribution parameters
+  maximum_conductivity: 1.0e6   # Maximum conductivity value
+  minimum_conductivity: 1.0e-7  # Minimum conductivity value
+  maximum_variation: 0.5        # Maximum variation factor for conductivity
+  
+  # Experimental mode settings
+  experimental:
+    conductivity: 1.0e-6
+    bias_contact_resistance: 0.01
+
+# ============================================================================
+# Geometry Constraints
+# ============================================================================
+geometry:
+  inner_radius: 1.0         # Inner boundary radius
+  min_object_size: 0.01     # Minimum fractional size of objects
+  number_of_tries: 100      # Maximum attempts to generate non-intersecting objects
+  aspect_ratio_limit: 4.0   # Maximum aspect ratio for objects (width/height or height/width)
+
+# ============================================================================
+# Solver and Method Configuration
+# ============================================================================
+solver:
+  method_name: 'jacobian'   # Solver method ('jacobian', etc.)
+  reverse_simulation_pattern: 1  # Pattern reversal flag (1 or -1)
+  rotation_angle: 0         # Rotation angle in degrees
+  get_electrodes_resistance: 0   # Flag to compute electrode resistance
+  get_volt_nodes: 0         # Flag to compute voltage at nodes
+
+# ============================================================================
+# Output Settings
+# ============================================================================
+output:
+  # Directory structure
+  base_dir: '../dataset/'   # Base directory for output (relative to project root)
+  
+  # Output formats
+  save_hdf5: true           # Save data in HDF5 format
+  save_mat: true            # Save data in MATLAB .mat format
+  save_csv: true            # Save metadata in CSV format
+  
+  # Multi-resolution settings
+  resolutions:
+    - 256
+    - 128
+    - 64
+    - 32
+
+# ============================================================================
+# Experimental Data Settings (for experimental mode)
+# ============================================================================
+experimental:
+  folder_experimental: '/disk/DatasetD/dataset/experiment/Messung_20221102_Messung_0012/Evaluation/'
+  list_of_data: [29, 20]    # Measurement indices [without objects, with objects]
+
+# ============================================================================
+# Parallel Processing
+# ============================================================================
+parallel:
+  enable: true              # Enable parallel processing
+  workers: null             # Number of workers (null = auto-detect)
+
+# ============================================================================
+# Visualization and Debugging
+# ============================================================================
+visualization:
+  plot_samples: false       # Generate plots for samples
+  save_plots: false         # Save generated plots
+  plot_resolution: 300      # DPI for saved plots
+
+# ============================================================================
+# Random Seed Control (for reproducibility)
+# ============================================================================
+reproducibility:
+  use_deterministic_seed: true  # Use deterministic seeding
+  seed_offset: 0            # Offset for seed calculation (patch_number + offset)
+
+# ============================================================================
+# Advanced Settings
+# ============================================================================
+advanced:
+  warnings: 'off'           # MATLAB warning setting ('on' or 'off')
+  round_value: 14           # Precision for rounding node coordinates
+  
+  # Scale factors for model dimensions
+  scale:
+    x: 1.0
+    y: 1.0
+    z: 1.0
