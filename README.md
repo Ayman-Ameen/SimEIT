@@ -1,7 +1,7 @@
 # SimEIT: A Scalable Simulation Framework for Generating Large-Scale Electrical Impedance Tomography Datasets
 
 ## Authors
-- Ayman A. Ameen<sup>1</sup>, Franziska Mathis-Ullrich<sup>1</sup>, Bernhard Kainz<sup>2</sup>
+- Ayman A. Ameen<sup>1</sup>, Franziska Mathis-Ullrich<sup>1</sup>, Bernhard Kainz<sup>1,2</sup>
 
 <sup>1</sup>Friedrich-Alexander University Erlangen-Nürnberg  
 <sup>2</sup>Imperial College London  
